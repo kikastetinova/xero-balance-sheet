@@ -1,0 +1,34 @@
+services:
+  mock-xero:
+    image: jaypeng2015/show-me-the-money
+    ports:
+      - "3000:3000"
+    expose:
+      - "3000"
+    networks:
+      - backend-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    expose:
+      - "3001"
+    ports:
+      - "3001:3001"
+    depends_on:
+      - mock-xero
+    networks:
+      - backend-network
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    environment:
+      BACKEND_API_URL: "http://backend:3001"
+    networks:
+      - backend-network
+networks:
+  backend-network:
+    driver: bridge
