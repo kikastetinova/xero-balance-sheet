@@ -31,17 +31,43 @@ Unit tests are
    cd demyst
    ```
 
-2. Install dependencies:
+2. Pull the docker image
+  
+  ```sh
+  docker pull jaypeng2015/show-me-the-money
+  ```
+
+3. Install dependencies:
 
    ```sh
+   cd frontend
+   npm i
+
+   cd ../backend
    npm i
    ```
 
-3. Start the development server:
+4. Start the development server:
+
+  You can either start the backend and frontend as a local dev server
 
    ```sh
+   //start the xero api docker container
+   docker network create backend-network
+   docker run -d --name mock-xero --network backend-network -p 3000:3000 jaypeng2015/show-me-the-money
+
+   cd frontend
+   npm run dev
+
+   cd backend
    npm run dev
    ```
+
+  or you can start everything as docker containers:
+
+  ```sh
+   docker-compose build
+   docker-compose up -d
 
 4. Open your browser and navigate to `http://localhost:5173`.
 
@@ -50,18 +76,13 @@ Unit tests are
 
 The solution could be further improved to be more production-ready by:
 
-1.  better configs for eslint and prettier and vite
+1.  adding configs for eslint and prettier for the backend app
 2.  extracting all config files into a separate folder
-3.  including unit and e2e tests
 5.  using a library for data fetching, e.g. tanstack-query for query caching or fetch retry
-6.  improving UX by displaying a fallback component (e.g. a skeleton question component) before the initial question is loaded.
-7.  adding aria labels to buttons for better accessibility
-8.  lazy loading non-essential components, in our case MatchPage would be a candidate for that
 9.  using ErrorBoundary component for better error catching
 10. expose the application as a micro-frontend using module federation to use it as part of a larger app
-11. creating better UI components, e.g. the button in <MatchPage> and button in <AnswerOption> have the same styling, but aren't extracted to a separate component. Another alternative would be using a component-based UI library, such as MUI or Boostrap5 or daisyUI.
-12. improving UX by displaying a progress bar- that's isn't possible with the provided API as we don't know total number of questions
-13. storing user progress between page reloads, right now the progress resets of page reload
+11. extending the UI by adding a form that would allow users to select optional parameters for the xero api query
+13. the docker config is not production ready
 
 
 
