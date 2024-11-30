@@ -12,6 +12,8 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    environment:
+      - XERO_API_URL=http://mock-xero:3000
     expose:
       - "3001"
     ports:
@@ -25,8 +27,6 @@ services:
     build: ./frontend
     ports:
       - "5173:5173"
-    environment:
-      BACKEND_API_URL: "http://backend:3001"
     networks:
       - backend-network
 networks:

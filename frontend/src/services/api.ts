@@ -1,5 +1,4 @@
-//const API_BASE = 'http://backend:3001';
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+const API_BASE = import.meta.env.VITE_API_URL;//|| 'http://localhost:3001';
 const API_BALANCE_SHEET = `${API_BASE}/api/balance-sheet`;
 
 
