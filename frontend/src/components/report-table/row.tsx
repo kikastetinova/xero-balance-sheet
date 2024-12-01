@@ -1,4 +1,4 @@
-import { useCallback} from 'react';
+import { useCallback, memo } from 'react';
 import { type Row } from "../../services/context";
 import ReportTableCell from './cell';
 
@@ -6,7 +6,7 @@ type ReportTableRowProps = {
   row: Row;
   nesting?:  number;
 }
-const ReportTableRow = (props: ReportTableRowProps) => {
+const ReportTableRow = memo((props: ReportTableRowProps) => {
   const { row, nesting } = props;
   const { RowType } = row;
 
@@ -44,6 +44,6 @@ const ReportTableRow = (props: ReportTableRowProps) => {
     });
     return <tr className={rowCssClass}>{cells}</tr>
   }
-};
+});
 
 export default ReportTableRow;
