@@ -2,8 +2,8 @@
 
 This is Show Me The Money App built with React, TypeScript, and Vite. It renders a a Xero Ballance Summary Report.
 
-Components don't hold any internal state and use props for receiving data. 
-This is because they can be potentially shared, if we had multiple different Xero reports, that use the same layout and data structure.
+Report table components don't hold any internal state and use props for receiving data. 
+This is because I wanted them to be reusable and independent on the context.
 
 Container folder contains balance-sheet-table.tsx file that renders the balance sheet report.
 
